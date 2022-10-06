@@ -1,0 +1,45 @@
+name: Docker Image CI (create and push to DockerHub)
+
+on:
+  push:
+    branches: 'master'
+  # push:
+  #   branches: [ "master" ]
+  # pull_request:
+  #   branches: [ "master" ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps: 
+    - 
+      name: SetUp QEMU 
+      uses: docker/setup-qemu-action@v2
+    - 
+      name: Set Up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - 
+      name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - 
+      name: Build and Push to DH
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        tags: leo/api-mongo:$(date +%s)
+        # tags: user/user-mongo:$(date +%s)
+
+  build: 
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
