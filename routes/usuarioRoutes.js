@@ -6,5 +6,6 @@ const router = express.Router();
 //Autenticación, Registro y Confirmación de Usuario
 
 router.post("/", registrar); //Crea un nuevo usuario
+//router.("/", eliminarUsuario);  //Elimina un usuario existente
 
 export default router;
