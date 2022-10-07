@@ -20,6 +20,8 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    enviroment:
+      name: api
 
     steps: 
     - 
