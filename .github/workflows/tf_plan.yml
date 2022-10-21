@@ -1,3 +1,10 @@
+name: Terraform create infrastructure and test 
+
+on:
+  push:
+    branches: 'master'
+
+
 lint:
    name: Lint
    runs-on: ubuntu-latest
