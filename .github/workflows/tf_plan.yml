@@ -6,16 +6,13 @@ on:
 
 jobs:
 
-  check:
-    name: Check latest commits
+  build:
+    name: Check and run terraform 
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v2
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
