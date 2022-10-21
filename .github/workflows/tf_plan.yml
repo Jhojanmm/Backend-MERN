@@ -19,7 +19,7 @@ jobs:
           terraform_version: 1.1.9
   
       - name: Run terraform fmt check
-        run: terraform fmt -check -diff -recursive
+        run: terraform fmt -diff -recursive
   
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
