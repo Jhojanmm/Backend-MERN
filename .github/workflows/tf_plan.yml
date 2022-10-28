@@ -44,4 +44,5 @@ jobs:
         continue-on-error: true
         id: apply
         run: |
+            cd terraform/
             terraform apply --auto-approve -input=false
