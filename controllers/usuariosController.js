@@ -36,20 +36,22 @@ const autenticar = async (req, res) => {
   }
 
   //comprobar si el usuario está confirmado
-  if (!usuario.confirmado) {
-    const error = new Error("Tu cuenta no ha sido confirmada");
-    return res.status(403).json({ msg: error.message });
-  }
+  //if (!usuario.confirmado) {
+   // const error = new Error("Tu cuenta no ha sido confirmada");
+   // return res.status(403).json({ msg: error.message });
+  //}
 
   // Comprobar su password
   if (await usuario.comprobarPassword(password)) {
-    console.log("es correcto");
+    
     res.json({
       _id: usuario._id,
       nombre: usuario.nombre,
       email: usuario.email,
-      token: generarJWT(usuario._id),
+      token: usuario._id,
+      msg: 'success'
     });
+    
   } else {
     console.log("es incorrecto");
     const error = new Error("El password es incorrecto");
